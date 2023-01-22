@@ -17,7 +17,11 @@ export const Main = () => {
 
     return <div>
         <p>Main Page</p>
-        <p>{foodList?.map((food) => food.dishname)}</p>
+        <p>{foodList?.map((food) => <p>{food.dishname},
+        {food.description}, 
+        {food.price}, 
+        {food.foodtype}, 
+        {food.servetime}</p>)}</p>
         <p>Over</p>
     </div>
 }
