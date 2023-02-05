@@ -1,0 +1,35 @@
+.box {
+    border-style: solid;
+    border-color:black;
+    width:60%;
+    margin:10%;
+    text-align:center;
+    padding:10px;
+    display:inline-block;
+    justify-content: center;
+}
+
+.login {
+    font-size: x-large;
+    text-align:center;
+}
+
+.login input{
+    width:30%;
+    padding:10px;
+    margin:5px;
+
+}
+
+.login button{
+    background-color:deepskyblue;
+    border-color: dodgerblue;
+    color:white;
+    padding:10px;
+    width:20%;
+    margin:5px;
+}
+
+.register {
+    font-size:x-large;
+}

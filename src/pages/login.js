@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {auth} from "../config/firebase";
 import {signInWithEmailAndPassword} from 'firebase/auth';
-import { useNavigate , Link } from 'react-router-dom'
+import { useNavigate , Link } from 'react-router-dom';
+import '../CSS/Login.css'
 
 export const Login = () => {
 
@@ -20,16 +21,16 @@ export const Login = () => {
         }
     }
 
-    return <div>
-        <div>
-            <p>Login</p>
+    return <div className="box">
+        <div className="login">
+            <p>Login Here</p>
             Email: <input placeholder="email" onChange={(effect) => {setLoginEmail(effect.target.value)}} />
             <br></br>
             Password:<input placeholder="password" onChange={(effect) => {setLoginPassword(effect.target.value)}}/>
             <br></br>
             <button onClick={User_Login} >Click to Login</button>
         </div>
-        <div>
+        <div className="register">
             Don't have an account? <Link to="/register">Register</Link> now.
         </div>
         

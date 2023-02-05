@@ -3,6 +3,7 @@ import "../App.css"
 import {createUserWithEmailAndPassword} from "firebase/auth"
 import {auth} from '../config/firebase'
 import { useNavigate } from 'react-router-dom'
+import '../CSS/Login.css'
 
 export const Register = () => {
 
@@ -20,12 +21,14 @@ export const Register = () => {
         }
     };
 
-    return <div>
-        <p>Register</p>
-        Email: <input placeholder="email" onChange={(event) => setRegisterEmail(event.target.value)}/>
-        <br></br>
-        Password:<input placeholder="password" onChange={(event) => setRegisterPassword(event.target.value)}/>
-        <br></br>
-        <button onClick={register_user}>Click to SignIn</button>
+    return <div className="box">
+        <div className="login">
+            <p>Register Here</p>
+            Email: <input placeholder="email" onChange={(event) => setRegisterEmail(event.target.value)}/>
+            <br></br>
+            Password:<input placeholder="password" onChange={(event) => setRegisterPassword(event.target.value)}/>
+            <br></br>
+            <button onClick={register_user}>Click to SignIn</button>
+        </div>
     </div>
 }

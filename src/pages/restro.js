@@ -1,13 +1,12 @@
 import {useForm} from 'react-hook-form';
-import * as yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup';
 import {auth,db,storage} from '../config/firebase'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import {useState} from 'react'
 import {addDoc, collection} from 'firebase/firestore'
 import {useNavigate} from 'react-router-dom';
+import '../CSS/resto.css'
 import { async } from '@firebase/util';
-import {ref, uploadBytesResumable} from 'firebase/storage';
+import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage';
 
 export const Dish = () =>{
     const [user, loading, error] = useAuthState(auth);
@@ -22,13 +21,8 @@ export const Dish = () =>{
 
 
     const onCreatePost = async ({dishname, description, price}) => {
-        console.log(dishname)
-        console.log(description)
-        console.log(price)
-        console.log(foodtype)
-        console.log(servetime)
         await addDoc(postref, {
-            dishname,description,price,foodtype,servetime,
+            dishname,description,price,foodtype,servetime,imgURL,
             useremail: user?.email,
             userId: user?.uid,
         })
@@ -51,35 +45,42 @@ export const Dish = () =>{
       (error) => {
         alert(error);
       },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url)=> {
+          setImgURL(url);
+          console.log(url);})
+      }
     );
     }
   
 
-    return <form onSubmit={handleSubmit(onCreatePost)}>
+    return <form onSubmit={handleSubmit(onCreatePost)} className='box'>
         
-        Dish-Name: <input placeholder="Dish Name" {...register('dishname')}/><br />
+      <div className="Form">
+            Dish-Name: <input placeholder="Dish Name" {...register('dishname')}/><br />
 
-        Description of the Dish: <input placeholder="Description" {...register('description')}/><br />
+            Description of the Dish: <input placeholder="Description" {...register('description')}/><br />
 
-        Price: <input placeholder="Price" {...register('price')}/><br />
+            Price: <input placeholder="Price" {...register('price')}/><br />
 
-        Dish-Type:<br />
-        <input type="radio" id="veg" name="dish-type" value="VEG" onChange={(e) => {setFoodtype(e.target.value)}}/>
-        <label for="veg">VEG</label><br />
-        <input type="radio" id="non-veg" name="dish-type" value="NON-VEG" onChange={(e) => {setFoodtype(e.target.value)}}/>
-        <label for="non-veg">NON-VEG</label><br />
+            Dish-Type:<br />
+            <input type="radio" id="veg" name="dish-type" value="VEG" onChange={(e) => {setFoodtype(e.target.value)}}/>
+            <label for="veg">VEG</label><br />
+            <input type="radio" id="non-veg" name="dish-type" value="NON-VEG" onChange={(e) => {setFoodtype(e.target.value)}}/>
+            <label for="non-veg">NON-VEG</label><br />
 
-        Dish Serve-Time:<br />
-        <input type="checkbox" id="breakfast" name="breakfast" value="Breakfast" onChange={(e) => {servetime?setServetime([...servetime , e.target.value]):setServetime([e.target.value])}}/>
-        <label for="breakfast"> Breakfast</label><br />
-        <input type="checkbox" id="lunch" name="lunch" value="Lunch" onChange={(e) => {servetime?setServetime([...servetime , e.target.value]):setServetime([e.target.value])}}/>
-        <label for="lunch"> Lunch</label><br />
-        <input type="checkbox" id="dinner" name="dinner" value="Dinner" onChange={(e) => {servetime?setServetime([...servetime , e.target.value]):setServetime([e.target.value])}}/>
-        <label for="dinner"> Dinner</label><br></br>
+            Dish Serve-Time:<br />
+            <input class="container" type="checkbox" id="breakfast" name="breakfast" value="Breakfast" onChange={(e) => {servetime?setServetime([...servetime , e.target.value]):setServetime([e.target.value])}}/>
+            <label  for="breakfast"> Breakfast</label><br />
+            <input class="container" type="checkbox" id="lunch" name="lunch" value="Lunch" onChange={(e) => {servetime?setServetime([...servetime , e.target.value]):setServetime([e.target.value])}}/>
+            <label for="lunch"> Lunch</label><br />
+            <input class="container" type="checkbox" id="dinner" name="dinner" value="Dinner" onChange={(e) => {servetime?setServetime([...servetime , e.target.value]):setServetime([e.target.value])}}/>
+            <label for="dinner"> Dinner</label><br></br>
 
-        Image of your Dish:<br />
-        <input type="file" onChange={handleUpload} />
-
-        <input type="submit" />
+            Image of your Dish:<br />
+            <input type="file" onChange={handleUpload} />
+            <br/>
+            <input className='submit' type="submit" />
+      </div>
     </form>
 }

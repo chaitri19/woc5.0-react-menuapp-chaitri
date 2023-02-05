@@ -1,0 +1,43 @@
+.box {
+    border-style: solid;
+    border-color:black;
+    width:60%;
+    text-align:center;
+    padding:10px;
+    display:inline-block;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.Form {
+    font-size:large;
+}
+
+.Form input{
+    width:20%;
+    padding:5px;
+    margin:2px;
+    font-size: large;
+    text-align:center;
+}
+
+.Form input[type="checkbox"]{
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 0.15em;
+    margin-right: 0.5em;
+    border: 0.15em solid #007a7e;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.submit{
+    background-color:springgreen;
+    border-color:chartreuse;
+    color:tomato;
+    padding:5px;
+}

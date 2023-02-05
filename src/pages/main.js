@@ -17,11 +17,16 @@ export const Main = () => {
 
     return <div>
         <p>Main Page</p>
-        <p>{foodList?.map((food) => <p>{food.dishname},
+        {foodList?.map((food) =>  {return ( <div><p>{food.dishname},
         {food.description}, 
         {food.price}, 
         {food.foodtype}, 
-        {food.servetime}</p>)}</p>
+        {food.servetime},
+        </p>
+        <img src={food.imgURL} alt="image not found" />
+        </div>)}
+        
+        )}
         <p>Over</p>
     </div>
 }

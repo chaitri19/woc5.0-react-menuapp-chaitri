@@ -1,0 +1,14 @@
+.navbar{
+    display:inline;
+}
+
+.navbar-link {
+    background-color: aqua;
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+    text-decoration:none;
+}
+
+
+
