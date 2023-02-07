@@ -125,42 +125,44 @@ export const Navbar = () =>{
             })},[checkedFood])
 
     return <div className='navbar'>
-        <div className='navbar-link'>
-            <Link className='navbar-linktag' to='/' >Home</Link>
-            {!user ? (<Link to='/login' className='navbar-linktag' >Login</Link>) : (<Link to='/add-dish' className='navbar-linktag'>Add Your New Dish</Link>)}
-            <button className='navbar-linktag' onClick={() => {setShowDropdown(!showDropdown)}}>Filter by Food Timings</button>
+
+        <Link className="links" to='/' >Home</Link>
+        {!user ? (<Link to='/login' className="links" >Login</Link>) : (<Link to='/add-dish' className="links">Add Your New Dish</Link>)}
+        
+        <div className="dropdown-menu">
+        <button className="menu-btn" onClick={() => {setShowDropdown(!showDropdown)}}>Filter by Food Timings</button>
             {
                 showDropdown ? (
-                    <div>
-                        <input type="checkbox" id="breakfast" name="breakfast" value="Breakfast" checked={checkboxVal[0]} onClick={handleChecked}/>
-                        <label for="breakfast"> Breakfast</label><br />
-                        <input type="checkbox" id="lunch" name="lunch" value="Lunch" checked={checkboxVal[1]} onClick={handleChecked}/>
-                        <label for="lunch"> Lunch</label><br />
-                        <input type="checkbox" id="dinner" name="dinner" value="Dinner" checked={checkboxVal[2]} onClick={handleChecked}/>
-                        <label for="dinner"> Dinner</label><br></br>
-                        <input type="checkbox" id="all" name="all" value="All" checked={checkAll} onClick={handleCheckedAll}/>
-                        <label for="all">All</label><br></br>
-                    </div>
-                ) : null
-            }
-            <button className='navbar-linktag' onClick={() => {setShow(!show)}}>Filter by Food Type</button>
-            {
-                show ? (
-                    <div>
-                        <button onClick={handleVEG}>VEG</button><br/>
-                        <button onClick={handleNONVEG}>NON-VEG</button>
+                    <div className="menu-content">
+                        <input className="links-hidden" type="checkbox" id="breakfast" name="breakfast" value="Breakfast" checked={checkboxVal[0]} onClick={handleChecked}/>
+                        <label className='label' for="breakfast"> Breakfast</label><br />
+                        <input className="links-hidden" type="checkbox" id="lunch" name="lunch" value="Lunch" checked={checkboxVal[1]} onClick={handleChecked}/>
+                        <label className='label'  for="lunch"> Lunch</label><br />
+                        <input className="links-hidden" type="checkbox" id="dinner" name="dinner" value="Dinner" checked={checkboxVal[2]} onClick={handleChecked}/>
+                        <label className='label' for="dinner"> Dinner</label><br></br>
+                        <input className="links-hidden" type="checkbox" id="all" name="all" value="All" checked={checkAll} onClick={handleCheckedAll}/>
+                        <label className='label' for="all">All</label><br></br>
                     </div>
                 ) : null
             }
         </div>
-
-        <div className='user'>
+        <div className="dropdown-menu">
+            <button className="menu-btn" onClick={() => {setShow(!show)}}>Filter by Food Type</button>
+                {
+                    show ? (
+                        <div className="menu-content">
+                            <button className="links-hidden" onClick={handleVEG}>VEG</button><br/>
+                            <button className="links-hidden" onClick={handleNONVEG}>NON-VEG</button>
+                        </div>
+                    ) : null
+                }
+        </div>
             {user && (
                 <>
-                    <p>{user?.email}</p>
-                    <button onClick={LogOut}>Log Out</button>
+                    <p className="user">{user?.email}</p>
+                    <button className="btn" onClick={LogOut}>Log Out</button>
                 </>
             )}
-        </div>
+        
     </div>
 }

@@ -1,0 +1,46 @@
+.grid-container {
+   display: grid;
+   grid-template-columns: auto auto;
+   background-color: #2196F3;
+   padding: 10px;
+   margin: 10px;
+ }
+
+ .cards{
+   background-color: rgba(255, 255, 255, 0.8);
+   border: 1px solid rgba(0, 0, 0, 0.8);
+   padding: 10px;
+   font-size: 30px;
+   text-align: center;
+ }
+
+ .image{
+   display:flexbox;
+   width:60%;
+   height:60%;
+   border-color:red;
+   border-style: double;
+   justify-content: center;
+   
+}
+ 
+ .front {
+    position: relative;
+    display:block;
+    width:inherit;
+    z-index: 1;
+    margin:1%;
+    text-align: center;
+ }
+
+.back {
+    display: none;
+    position: absolute;
+    background-color:darkorchid;
+    min-width: 160px;
+    z-index: 1;
+ }
+
+ .front:hover {
+   background-color: black;
+ }
