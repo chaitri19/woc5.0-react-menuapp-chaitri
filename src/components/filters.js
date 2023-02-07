@@ -2,6 +2,7 @@ import {auth,db} from '../config/firebase';
 import {getDocs, collection} from 'firebase/firestore';
 import {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
+import '../CSS/main.css'
 
 export const VEG = (currtype) => {
     const foodRef = collection(db, "food");
@@ -17,12 +18,20 @@ export const VEG = (currtype) => {
     },[]);
 
     return <div>
-        <p>{currtype.currtype} Food List is here</p>
         {foodList?.filter((food) => {return food.foodtype === currtype.currtype}).map((food) => {
                 return (
-                <p>
-                    {food.dishname}
-                </p>
+                    <div className='cards'>
+                    <div className='front'>
+                        <p>{food.dishname}</p>
+                        <img className='image' src={food.imgURL} alt="image not found" />
+                        <p>{food.price}</p>
+                    </div>
+                    <div className='back'>
+                        {food.description}, 
+                        {food.foodtype}, 
+                        {food.servetime},
+                    </div>
+                </div>
             )
             }) 
         }
@@ -88,7 +97,20 @@ export const FoodTimeList = () => {
         }
 
     return (
-    <div>
-        {displaylist?.map((d)=> {return (<p>{d.product.dishname}</p>)})}
+    <div >
+        {displaylist?.map((d)=> {return (
+            <div className='cards'>
+                <div className='front'>
+                    <p>{d.product.dishname}</p>
+                    <img className='image' src={d.product.imgURL} alt="image not found" />
+                    <p>{d.product.price}</p>
+                </div>
+                <div className='back'>
+                    {d.product.description}, 
+                    {d.product.foodtype}, 
+                    {d.product.servetime},
+                </div>
+        </div>
+        )})}
     </div>)
 };
